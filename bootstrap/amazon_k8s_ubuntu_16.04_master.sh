@@ -79,6 +79,11 @@ mkdir -p /home/ubuntu/.kube
 cp /etc/kubernetes/admin.conf /home/ubuntu/.kube/config
 chown -R ubuntu:ubuntu /home/ubuntu/.kube
 
+mkdir -p ~/.kube
+cp /etc/kubernetes/admin.conf ~/.kube/config
+
+alias k=kubectl
+
 function setup_rbac() {
   cat << EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1beta1
