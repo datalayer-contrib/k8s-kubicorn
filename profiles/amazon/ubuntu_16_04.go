@@ -122,7 +122,7 @@ func NewUbuntuCluster(name string) *cluster.Cluster {
 							{
 								IngressFromPort: "0",
 								IngressToPort:   "65535",
-								IngressSource:   "192.168.0.0/16",
+								IngressSource:   "0.0.0.0/0",
 								IngressProtocol: "-1",
 							},
 						},
@@ -202,7 +202,7 @@ func NewUbuntuCluster(name string) *cluster.Cluster {
 							{
 								IngressFromPort: "0",
 								IngressToPort:   "65535",
-								IngressSource:   "192.168.0.0/16",
+								IngressSource:   "0.0.0.0/0",
 								IngressProtocol: "-1",
 							},
 						},
