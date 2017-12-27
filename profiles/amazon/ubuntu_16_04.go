@@ -135,7 +135,7 @@ func NewUbuntuCluster(name string) *cluster.Cluster {
 				MaxCount: 3,
 				MinCount: 3,
 				Image:    "ami-835b4efa",
-				Size:     "t2.medium",
+				Size:     "r3.4xlarge",
 				BootstrapScripts: []string{
 					"/src/go/src/github.com/kris-nova/kubicorn/bootstrap/amazon_k8s_ubuntu_16.04_node.sh",
 				},
