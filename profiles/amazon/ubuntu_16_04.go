@@ -126,8 +126,8 @@ func NewUbuntuCluster(name string) *cluster.Cluster {
 			{
 				Type:     cluster.ServerPoolTypeNode,
 				Name:     fmt.Sprintf("%s.node", name),
-				MaxCount: 1,
-				MinCount: 1,
+				MaxCount: 3,
+				MinCount: 3,
 				Image:    "ami-835b4efa",
 				Size:     "t2.medium",
 				BootstrapScripts: []string{
@@ -174,7 +174,9 @@ func NewUbuntuCluster(name string) *cluster.Cluster {
 						Zone: "us-west-2b",
 					},
 				},
-				AwsConfiguration: &cluster.AwsConfiguration{},
+				AwsConfiguration: &cluster.AwsConfiguration{
+					SpotPrice: "0.4",
+				},
 				Firewalls: []*cluster.Firewall{
 					{
 						Name: fmt.Sprintf("%s.node-external-%s", name, uuid.TimeOrderedUUID()),

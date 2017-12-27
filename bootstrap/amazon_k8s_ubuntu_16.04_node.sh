@@ -45,3 +45,5 @@ HOSTNAME=$(hostname -f)
 
 kubeadm reset
 kubeadm join --node-name ${HOSTNAME} --token ${TOKEN} ${MASTER}
+
+systemctl restart kubelet
