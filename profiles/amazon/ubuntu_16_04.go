@@ -135,7 +135,7 @@ func NewUbuntuCluster(name string) *cluster.Cluster {
 				MaxCount: 3,
 				MinCount: 3,
 				Image:    "ami-835b4efa",
-				Size:     "r3.4xlarge",
+				Size:     "c3.4xlarge",
 				BootstrapScripts: []string{
 					"/src/go/src/github.com/kris-nova/kubicorn/bootstrap/amazon_k8s_ubuntu_16.04_node.sh",
 				},
@@ -177,7 +177,7 @@ func NewUbuntuCluster(name string) *cluster.Cluster {
 					{
 						Name: fmt.Sprintf("%s.node", name),
 						CIDR: "10.0.100.0/24",
-						Zone: "us-west-2b",
+						Zone: "us-west-2a",
 					},
 				},
 				AwsConfiguration: &cluster.AwsConfiguration{
