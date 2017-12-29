@@ -4,10 +4,9 @@
 # and the shell script real work. If you need conditional logic, write it in bash or make another shell script.
 # ------------------------------------------------------------------------------------------------------------------------
 
-rm -fr /var/lib/docker/image/aufs
-mkdir -p /var/lib/docker/image
-mkdir /mnt/docker-aufs
-ln -s /mnt/docker-aufs /var/lib/docker/image/aufs
+rm -fr /var/lib/docker
+mkdir /mnt/docker
+ln -s /mnt/docker /var/lib/docker
 
 # Specify the Kubernetes version to use
 KUBERNETES_VERSION="1.8.6"
