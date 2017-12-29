@@ -5,7 +5,7 @@
 # ------------------------------------------------------------------------------------------------------------------------
 
 # Specify the Kubernetes version to use
-KUBERNETES_VERSION="1.8.4"
+KUBERNETES_VERSION="1.8.3"
 
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 touch /etc/apt/sources.list.d/kubernetes.list
@@ -44,6 +44,18 @@ systemctl restart kubelet.service
 HOSTNAME=$(hostname -f)
 
 kubeadm reset
-kubeadm join --node-name ${HOSTNAME} --token ${TOKEN} ${MASTER}
 
-systemctl restart kubelet
+cat <<EOF > /root/kubeadm-aws-join.conf
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: NodeConfiguration
+kubernetesVersion: ${KUBERNETES_VERSION}
+token: ${TOKEN}
+nodeName: ${HOSTNAME}
+discoveryTokenAPIServers:
+- ${MASTER}
+EOF
+
+kubeadm join --config=/root/kubeadm-aws-join.conf
+
+# systemctl restart kubelet
+reboot
