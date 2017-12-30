@@ -85,9 +85,6 @@ cp /etc/kubernetes/admin.conf ~/.kube/config
 alias k=kubectl
 
 function setup_rbac() {
-  kubectl create clusterrolebinding add-on-cluster-admin \
-    --clusterrole=cluster-admin \
-    --serviceaccount=kube-system:default
   cat << EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
@@ -104,6 +101,9 @@ roleRef:
   name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
 EOF
+  kubectl create clusterrolebinding add-on-cluster-admin \
+    --clusterrole=cluster-admin \
+    --serviceaccount=kube-system:default
 }
 
 function install_helm() {
